@@ -1,5 +1,5 @@
 /* css/style.css */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloock:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
   --color-bg:    #f6f8db;
@@ -11,7 +11,7 @@
   --color-rose-dark: #d8877f;
   --color-muted: #888;
   --color-white: #fff;
-  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-serif:  'Gloock', Georgia, serif;
   --font-sans:   'DM Sans', system-ui, sans-serif;
   --color-carousel-bg: #e8e8d8;
   --color-muted-light: #aaa;
