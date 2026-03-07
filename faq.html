@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Zené & Noah</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .faq-list { margin: 2rem 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--color-gold);
+      position: relative;
+    }
+    .faq-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--color-green);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .faq-item.open::before { opacity: 1; }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.25rem 2rem 1.25rem 1rem;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--color-text);
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--color-green);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+      padding: 0 1rem;
+      font-size: 0.95rem;
+      color: var(--color-text-mid);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 1rem 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <span class="nav-logo">Z &amp; N</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="details.html">Details</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <p>Questions?</p>
+      <h1>FAQ</h1>
+    </div>
+
+    <div class="container">
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">What is the dress code?</button>
+          <div class="faq-answer">
+            The dress code is cocktail attire. Think semi-formal — dresses, jumpsuits, suits, or dress pants and a blouse. We'll be outdoors at an arboretum, so you may want to consider the terrain when choosing footwear.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Is the venue indoors or outdoors?</button>
+          <div class="faq-answer">
+            Details to be added. The venue is Wisteria Hall at the Washington Park Arboretum.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Are children welcome?</button>
+          <div class="faq-answer">
+            Answer to be added.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Will there be parking at the venue?</button>
+          <div class="faq-answer">
+            Parking details to be added.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What should I do if I have dietary restrictions?</button>
+          <div class="faq-answer">
+            Please note any dietary restrictions in your RSVP and we'll do our best to accommodate you.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">When is the RSVP deadline?</button>
+          <div class="faq-answer">
+            Please RSVP by June 1, 2026.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
