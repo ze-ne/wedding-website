@@ -11,6 +11,7 @@
   if (slides.length <= 1) {
     if (prevBtn) prevBtn.style.display = 'none';
     if (nextBtn) nextBtn.style.display = 'none';
+    if (dotsContainer) dotsContainer.style.display = 'none';
     return;
   }
 
