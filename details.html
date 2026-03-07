@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details — Zené & Noah</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .timeline { list-style: none; margin: 2rem 0; }
+    .timeline li {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--color-gold);
+      align-items: baseline;
+    }
+    .timeline li:last-child { border-bottom: none; }
+    .timeline-time {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--color-green);
+      min-width: 90px;
+      white-space: nowrap;
+    }
+    .timeline-event { font-size: 0.95rem; }
+    .detail-badge {
+      display: inline-block;
+      background: var(--color-gold);
+      color: var(--color-text);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      margin-top: 0.5rem;
+    }
+    .map-wrapper {
+      margin: 2rem 0;
+      border: 1px solid var(--color-gold);
+      overflow: hidden;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 320px;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <span class="nav-logo">Z &amp; N</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="details.html" class="active">Details</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <p>Join us</p>
+      <h1>Wedding Details</h1>
+    </div>
+
+    <div class="container">
+
+      <div class="card">
+        <h2 style="font-size:1.5rem; margin-bottom:0.25rem;">Wisteria Hall</h2>
+        <p style="color:#666; margin-bottom:0.75rem;">2300 Arboretum Dr E, Seattle, WA 98112</p>
+        <span class="detail-badge">Cocktail Attire</span>
+      </div>
+
+      <div class="divider">&#10022; &#10022; &#10022;</div>
+
+      <h2 style="font-family:var(--font-serif); font-size:1.8rem; margin-bottom:0.5rem;">Schedule</h2>
+      <ul class="timeline">
+        <li>
+          <span class="timeline-time">4:00 PM</span>
+          <span class="timeline-event">Doors open — guests arrive and find their seats</span>
+        </li>
+        <li>
+          <span class="timeline-time">4:30 PM</span>
+          <span class="timeline-event">Ceremony begins</span>
+        </li>
+        <li>
+          <span class="timeline-time">5:00 PM</span>
+          <span class="timeline-event">Cocktail hour</span>
+        </li>
+        <li>
+          <span class="timeline-time">Evening</span>
+          <span class="timeline-event">Reception — dinner, dancing, and celebration</span>
+        </li>
+      </ul>
+
+      <div class="divider">&#10022; &#10022; &#10022;</div>
+
+      <h2 style="font-family:var(--font-serif); font-size:1.8rem; margin-bottom:0.5rem;">Venue</h2>
+      <div class="map-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2688.0!2d-122.2947!3d47.6408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2300+Arboretum+Dr+E%2C+Seattle%2C+WA+98112!5e0!3m2!1sen!2sus!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Wisteria Hall map">
+        </iframe>
+      </div>
+      <p style="font-size:0.85rem; color:#888; margin-top:0.5rem;">
+        <a href="https://maps.google.com/?q=2300+Arboretum+Dr+E,+Seattle,+WA+98112" target="_blank" rel="noopener" style="color:var(--color-green);">Open in Google Maps &#8599;</a>
+      </p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
+  </footer>
+</body>
+</html>
