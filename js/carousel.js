@@ -8,6 +8,7 @@
 
   if (!track || !carousel) return;
 
+  // Collect original images declared in HTML
   const realSlides = Array.from(track.querySelectorAll('img'));
   if (realSlides.length === 0) return;
 
@@ -21,109 +22,158 @@
     return;
   }
 
-  // Clone first and last slides for seamless wrapping.
-  // DOM order: [lastClone, real0, real1, ..., real(n-1), firstClone]
-  // Index:          0        1     2          n           n+1
-  const firstClone = realSlides[0].cloneNode(true);
-  const lastClone = realSlides[n - 1].cloneNode(true);
-  track.prepend(lastClone);
-  track.append(firstClone);
-
-  const allSlides = Array.from(track.querySelectorAll('img'));
-
-  let current = 1; // start at first real slide
+  let centerRealIndex = 0;
   let isTransitioning = false;
+  let lastDirection = 1;
   let timer;
+
+  // Returns a fresh clone of the real image at logical index i (wraps around)
+  function realImg(i) {
+    const idx = ((i % n) + n) % n;
+    return realSlides[idx].cloneNode(true);
+  }
 
   function slideWidth() {
     return carousel.offsetWidth / 3;
   }
 
-  function setSlideWidths() {
+  function applyWidths() {
     const w = slideWidth() + 'px';
-    allSlides.forEach(s => { s.style.width = w; });
-  }
-
-  // Offset so that allSlides[current] sits in the center third.
-  // Center slot left edge = slideWidth(). Slide i left edge = i * slideWidth().
-  // translateX = slideWidth() * (1 - current)
-  function getOffset() {
-    return slideWidth() * (1 - current);
-  }
-
-  function updateSlides(animate) {
-    if (!animate) track.style.transition = 'none';
-    allSlides.forEach((slide, i) => {
-      const active = i === current;
-      slide.classList.toggle('carousel-active', active);
-      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    const h = carousel.offsetHeight + 'px';
+    Array.from(track.children).forEach(img => {
+      img.style.width = w;
+      img.style.height = h;
     });
-    track.style.transform = `translateX(${getOffset()}px)`;
+  }
+
+  // translateX that places DOM index `i` in the center slot
+  function offsetFor(i) {
+    return slideWidth() * (1 - i);
+  }
+
+  // Set transform, optionally bypassing CSS transition
+  function setTransform(domIndex, animate) {
     if (!animate) {
-      // Re-enable transition after paint
-      requestAnimationFrame(() => { track.style.transition = ''; });
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${offsetFor(domIndex)}px)`;
+      track.offsetHeight; // force reflow so browser commits instantly
+      track.style.transition = '';
+    } else {
+      track.style.transform = `translateX(${offsetFor(domIndex)}px)`;
     }
   }
 
-  function updateDots() {
-    // Real slides are at allSlides indices 1..n; dot i maps to index i+1
-    const realIndex = current - 1;
-    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === realIndex);
-    });
-  }
-
-  function goTo(index) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    current = index;
-    updateSlides(true);
-    updateDots();
-    resetTimer();
-  }
-
-  // After each slide transition, jump from clone to real counterpart instantly.
-  track.addEventListener('transitionend', e => {
-    if (e.propertyName !== 'transform') return;
-    isTransitioning = false;
-    if (current === 0) {
-      // Was on lastClone — jump to real last
-      current = n;
-      updateSlides(false);
-      updateDots();
-    } else if (current === n + 1) {
-      // Was on firstClone — jump to real first
-      current = 1;
-      updateSlides(false);
-      updateDots();
-    }
+  // Build initial DOM: [center-2, center-1, center, center+1, center+2]
+  // With centerRealIndex=0: [real[n-2], real[n-1], real[0], real[1], real[2]]
+  track.innerHTML = '';
+  [-2, -1, 0, 1, 2].forEach((offset, i) => {
+    const img = realImg(offset);
+    if (i === 2) img.classList.add('carousel-active');
+    track.appendChild(img);
   });
+  applyWidths();
+  setTransform(2, false);
 
-  // Build dots for real slides only
+  // Build dots for real slides
   realSlides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
     dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-    dot.addEventListener('click', () => goTo(i + 1));
+    dot.addEventListener('click', () => {
+      if (i !== centerRealIndex) {
+        if (((i - centerRealIndex + n) % n) <= n / 2) goRight();
+        else goLeft();
+      }
+    });
     dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === centerRealIndex);
+    });
+  }
+
+  function goRight() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    lastDirection = 1;
+
+    centerRealIndex = (centerRealIndex + 1) % n;
+
+    // Append slide that will appear at far right
+    const newSlide = realImg(centerRealIndex + 2);
+    newSlide.style.width = slideWidth() + 'px';
+    newSlide.style.height = carousel.offsetHeight + 'px';
+    track.appendChild(newSlide);
+
+    // Outgoing center: DOM[2] → incoming center: DOM[3]
+    track.children[2].classList.remove('carousel-active');
+    track.children[3].classList.add('carousel-active');
+
+    // Animate: shift center from DOM index 2 to 3
+    setTransform(3, true);
+
+    updateDots();
+    resetTimer();
+  }
+
+  function goLeft() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    lastDirection = -1;
+
+    centerRealIndex = (centerRealIndex - 1 + n) % n;
+
+    // Prepend slide that will appear at far left
+    const newSlide = realImg(centerRealIndex - 2);
+    newSlide.style.width = slideWidth() + 'px';
+    newSlide.style.height = carousel.offsetHeight + 'px';
+    track.prepend(newSlide);
+
+    // After prepend, old center (was DOM[2]) is now DOM[3].
+    // Instantly reposition so the visual center stays put.
+    setTransform(3, false);
+
+    // Outgoing center: DOM[3] → incoming center: DOM[2]
+    track.children[3].classList.remove('carousel-active');
+    track.children[2].classList.add('carousel-active');
+
+    // Animate: shift center from DOM index 3 to 2
+    setTransform(2, true);
+
+    updateDots();
+    resetTimer();
+  }
+
+  // After each slide transition: drop the offscreen image and reset position.
+  track.addEventListener('transitionend', e => {
+    if (e.propertyName !== 'transform' || !isTransitioning) return;
+
+    if (lastDirection === 1) {
+      track.removeChild(track.firstElementChild); // scrolled off left
+    } else {
+      track.removeChild(track.lastElementChild);  // scrolled off right
+    }
+
+    // Center is now at DOM index 2 — reset without animation
+    setTransform(2, false);
+    isTransitioning = false;
   });
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 5000);
+    timer = setInterval(goRight, 10000); // auto-advance every 10s
   }
 
   window.addEventListener('resize', () => {
-    setSlideWidths();
-    updateSlides(false);
+    applyWidths();
+    setTransform(2, false);
   });
 
-  // Initialize
-  setSlideWidths();
-  updateSlides(false);
-  updateDots();
+  // Start
   resetTimer();
 
-  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', goLeft);
+  if (nextBtn) nextBtn.addEventListener('click', goRight);
 })();
