@@ -52,6 +52,7 @@
     <h1>Zené &amp; Noah</h1>
     <p class="hero-date">August 1, 2026 &middot; Seattle, WA</p>
     <p class="hero-welcome">We're getting married and we'd love to celebrate with you.</p>
+    <p id="wedding-countdown"></p>
     <a href="rsvp.html" class="btn">RSVP</a>
   </section>
 </main>
@@ -59,5 +60,17 @@
     <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
   </footer>
   <script src="js/carousel.js"></script>
+  <script>
+    var countdownDate = new Date("August 1, 2026 23:30:00").getTime();
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = Math.max(0, countdownDate - now); 
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("wedding-countdown").innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
+    }, 1000);
+  </script>
 </body>
 </html>
