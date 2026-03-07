@@ -18,6 +18,11 @@
   let current = 0;
   let timer;
 
+  // Initialize aria-hidden on all slides
+  slides.forEach((slide, i) => {
+    if (i !== 0) slide.setAttribute('aria-hidden', 'true');
+  });
+
   // Build dots
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
@@ -30,6 +35,7 @@
   function goTo(index) {
     slides[current].setAttribute('aria-hidden', 'true');
     current = (index + slides.length) % slides.length;
+    slides[current].removeAttribute('aria-hidden');
     track.style.transform = `translateX(-${current * 100}%)`;
     document.querySelectorAll('.carousel-dot').forEach((d, i) => {
       d.classList.toggle('active', i === current);
@@ -42,8 +48,8 @@
     timer = setInterval(() => goTo(current + 1), 5000);
   }
 
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
   resetTimer();
 })();
