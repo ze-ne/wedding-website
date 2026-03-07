@@ -44,6 +44,15 @@
       border: none;
       display: block;
     }
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-heading {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
   </style>
 </head>
 <body>
@@ -68,14 +77,14 @@
     <div class="container">
 
       <div class="card">
-        <h2 style="font-size:1.5rem; margin-bottom:0.25rem;">Wisteria Hall</h2>
-        <p style="color:#666; margin-bottom:0.75rem;">2300 Arboretum Dr E, Seattle, WA 98112</p>
+        <h2 class="card-heading">Wisteria Hall</h2>
+        <p style="color:var(--color-muted); margin-bottom:0.75rem;">2300 Arboretum Dr E, Seattle, WA 98112</p>
         <span class="detail-badge">Cocktail Attire</span>
       </div>
 
       <div class="divider">&#10022; &#10022; &#10022;</div>
 
-      <h2 style="font-family:var(--font-serif); font-size:1.8rem; margin-bottom:0.5rem;">Schedule</h2>
+      <h2 class="section-heading">Schedule</h2>
       <ul class="timeline">
         <li>
           <span class="timeline-time">4:00 PM</span>
@@ -97,7 +106,7 @@
 
       <div class="divider">&#10022; &#10022; &#10022;</div>
 
-      <h2 style="font-family:var(--font-serif); font-size:1.8rem; margin-bottom:0.5rem;">Venue</h2>
+      <h2 class="section-heading">Venue</h2>
       <div class="map-wrapper">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2688.0!2d-122.2947!3d47.6408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2300+Arboretum+Dr+E%2C+Seattle%2C+WA+98112!5e0!3m2!1sen!2sus!4v1"
@@ -107,8 +116,8 @@
           title="Wisteria Hall map">
         </iframe>
       </div>
-      <p style="font-size:0.85rem; color:#888; margin-top:0.5rem;">
-        <a href="https://maps.google.com/?q=2300+Arboretum+Dr+E,+Seattle,+WA+98112" target="_blank" rel="noopener" style="color:var(--color-green);">Open in Google Maps &#8599;</a>
+      <p style="font-size:0.85rem; color:var(--color-muted); margin-top:0.5rem;">
+        <a href="https://maps.google.com/?q=2300+Arboretum+Dr+E,+Seattle,+WA+98112" target="_blank" rel="noopener noreferrer" style="color:var(--color-green);">Open in Google Maps &#8599;</a>
       </p>
 
     </div>
