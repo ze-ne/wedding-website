@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registry — Zené & Noah</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .registry-intro {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--color-text-mid);
+      font-style: italic;
+    }
+    .registry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    .registry-card {
+      background: var(--color-blue);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .registry-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+    }
+    .registry-card p {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <span class="nav-logo">Z &amp; N</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="details.html">Details</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="registry.html" class="active">Registry</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <p>Gifts</p>
+      <h1>Registry</h1>
+    </div>
+
+    <div class="container">
+      <p class="registry-intro">
+        Your presence is truly the greatest gift. If you'd like to give something, we're registered at the following:
+      </p>
+
+      <div class="registry-grid">
+        <!-- Add/remove cards as needed. Replace href="#" with actual registry URL. -->
+        <div class="registry-card">
+          <h3>Registry Name A</h3>
+          <p>Description or note about this registry.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn">View Registry &#8599;</a>
+        </div>
+        <div class="registry-card">
+          <h3>Registry Name B</h3>
+          <p>Description or note about this registry.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn">View Registry &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
+  </footer>
+</body>
+</html>
