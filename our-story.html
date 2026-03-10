@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — Zené &amp; Noah</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    /* Center vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--color-gold);
+      transform: translateX(-50%);
+    }
+
+    .milestone {
+      position: relative;
+      width: 44%;
+      padding: 1.5rem;
+      background: var(--color-white);
+      border: 1px solid var(--color-gold);
+      margin-bottom: 3rem;
+    }
+
+    /* Dot on the center line */
+    .milestone::after {
+      content: '';
+      position: absolute;
+      top: 1.75rem;
+      width: 10px;
+      height: 10px;
+      background: var(--color-rose);
+      border-radius: 50%;
+    }
+
+    /* Odd milestones: left side */
+    .milestone:nth-child(odd) {
+      margin-left: 0;
+    }
+    .milestone:nth-child(odd)::after {
+      right: -6.5%;
+    }
+
+    /* Even milestones: right side */
+    .milestone:nth-child(even) {
+      margin-left: 56%;
+    }
+    .milestone:nth-child(even)::after {
+      left: -6.5%;
+    }
+
+    .milestone-year {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-green);
+      margin-bottom: 0.4rem;
+    }
+
+    .milestone-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .milestone-body {
+      font-size: 0.95rem;
+      color: var(--color-text-mid);
+      line-height: 1.7;
+    }
+
+    /* Mobile: single column */
+    @media (max-width: 640px) {
+      .timeline::before { left: 1rem; }
+
+      .milestone {
+        width: auto;
+        margin-left: 2.5rem !important;
+      }
+
+      .milestone::after {
+        left: -1.85rem !important;
+        right: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <span class="nav-logo">Z &amp; N</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html" class="active">Our Story</a></li>
+      <li><a href="details.html">Details</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Our Story</h1>
+    </div>
+
+    <div class="timeline">
+
+      <div class="milestone">
+        <p class="milestone-year">2019</p>
+        <h2 class="milestone-title">How We Met</h2>
+        <p class="milestone-body">Placeholder — describe how you first crossed paths. A chance encounter, a mutual friend, a place that felt ordinary until it wasn't.</p>
+      </div>
+
+      <div class="milestone">
+        <p class="milestone-year">2019</p>
+        <h2 class="milestone-title">First Date</h2>
+        <p class="milestone-body">Placeholder — the first time it was just the two of you. Where you went, what you talked about, the moment you knew this was something worth exploring.</p>
+      </div>
+
+      <div class="milestone">
+        <p class="milestone-year">2021</p>
+        <h2 class="milestone-title">Long Distance</h2>
+        <p class="milestone-body">Placeholder — the chapter that tested you. Miles between you, but a connection that only grew stronger with every call, every visit, every countdown.</p>
+      </div>
+
+      <div class="milestone">
+        <p class="milestone-year">2024</p>
+        <h2 class="milestone-title">The Proposal</h2>
+        <p class="milestone-body">Placeholder — the question that changed everything. The setting, the moment, the answer that neither of you will ever forget.</p>
+      </div>
+
+      <div class="milestone">
+        <p class="milestone-year">2026</p>
+        <h2 class="milestone-title">Getting Married</h2>
+        <p class="milestone-body">And now here we are — surrounded by the people we love most, ready to begin the next chapter together. We're so glad you're part of it.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
+  </footer>
+</body>
+</html>
