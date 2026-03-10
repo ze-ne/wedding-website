@@ -25,13 +25,29 @@
       transform: translateX(-50%);
     }
 
+    .milestone-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+    }
+
     .milestone {
       position: relative;
       width: 44%;
       padding: 1.5rem;
       background: var(--color-white);
       border: 1px solid var(--color-gold);
-      margin-bottom: 3rem;
+      box-sizing: border-box;
+    }
+
+    .milestone-photo {
+      width: 44%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid var(--color-gold);
+      display: block;
     }
 
     /* Dot on the center line */
@@ -45,19 +61,17 @@
       border-radius: 50%;
     }
 
-    /* Odd milestones: left side */
-    .milestone:nth-child(odd) {
-      margin-left: 0;
-    }
-    .milestone:nth-child(odd)::after {
+    /* Odd rows: text left, photo right */
+    .milestone-row:nth-child(odd) .milestone { order: 1; }
+    .milestone-row:nth-child(odd) .milestone-photo { order: 2; }
+    .milestone-row:nth-child(odd) .milestone::after {
       right: calc(-13.64% - 5px);
     }
 
-    /* Even milestones: right side */
-    .milestone:nth-child(even) {
-      margin-left: 56%;
-    }
-    .milestone:nth-child(even)::after {
+    /* Even rows: photo left, text right */
+    .milestone-row:nth-child(even) .milestone { order: 2; }
+    .milestone-row:nth-child(even) .milestone-photo { order: 1; }
+    .milestone-row:nth-child(even) .milestone::after {
       left: calc(-13.64% - 5px);
     }
 
@@ -84,17 +98,20 @@
 
     /* Mobile: single column */
     @media (max-width: 640px) {
-      .timeline::before { left: 1rem; }
+      .timeline::before { left: 0; display: none; }
 
-      .milestone {
-        width: auto;
-        margin-left: 2.5rem !important;
+      .milestone-row {
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      .milestone::after {
-        left: -1.85rem !important;
-        right: auto !important;
+      .milestone,
+      .milestone-photo {
+        width: 100%;
+        order: unset !important;
       }
+
+      .milestone::after { display: none; }
     }
   </style>
 </head>
@@ -120,34 +137,58 @@
     <div class="container">
     <div class="timeline">
 
-      <div class="milestone">
-        <p class="milestone-year">2019</p>
-        <h2 class="milestone-title">How We Met</h2>
-        <p class="milestone-body">Placeholder — describe how you first crossed paths. A chance encounter, a mutual friend, a place that felt ordinary until it wasn't.</p>
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2017</p>
+          <h2 class="milestone-title">How We Met</h2>
+          <p class="milestone-body">We met after our first year of college, interning for a CS professor. After spending almost the whole summer not talking to each other, . This is the first picture we took together on the last day of our internship.</p>
+        </div>
+        <img class="milestone-photo" src="images/our-story/IMG_1222.JPG" alt="Zené and Noah">
       </div>
 
-      <div class="milestone">
-        <p class="milestone-year">2019</p>
-        <h2 class="milestone-title">First Date</h2>
-        <p class="milestone-body">Placeholder — the first time it was just the two of you. Where you went, what you talked about, the moment you knew this was something worth exploring.</p>
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2017</p>
+          <h2 class="milestone-title">First Date</h2>
+          <p class="milestone-body">For our first date, we had brunch at Daley's, a diner near campus. Once we were officially together, we made it a tradition to go to Daley's at the start of every quarter.</p>
+        </div>
+        <img class="milestone-photo" src="images/our-story/IMG_4007.jpeg" alt="Zené and Noah">
       </div>
 
-      <div class="milestone">
-        <p class="milestone-year">2021</p>
-        <h2 class="milestone-title">Long Distance</h2>
-        <p class="milestone-body">Placeholder — the chapter that tested you. Miles between you, but a connection that only grew stronger with every call, every visit, every countdown.</p>
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2020</p>
+          <h2 class="milestone-title">Moving</h2>
+          <p class="milestone-body">In 2020, mid-pandemic, we moved to Seattle to start our jobs at Amazon. We</p>
+        </div>
+        <img class="milestone-photo" src="images/our-story/IMG_8874.jpeg" alt="Zené and Noah">
       </div>
 
-      <div class="milestone">
-        <p class="milestone-year">2024</p>
-        <h2 class="milestone-title">The Proposal</h2>
-        <p class="milestone-body">Placeholder — the question that changed everything. The setting, the moment, the answer that neither of you will ever forget.</p>
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2023</p>
+          <h2 class="milestone-title">Europe</h2>
+          <p class="milestone-body">In 2023, before Zené started grad school, we took a trip to London and Amsterdam.</p>
+        </div>
+        <img class="milestone-photo" src="images/our-story/IMG_2618.jpeg" alt="Zené and Noah">
       </div>
 
-      <div class="milestone">
-        <p class="milestone-year">2026</p>
-        <h2 class="milestone-title">Getting Married</h2>
-        <p class="milestone-body">And now here we are — surrounded by the people we love most, ready to begin the next chapter together. We're so glad you're part of it.</p>
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2024</p>
+          <h2 class="milestone-title">The Proposal</h2>
+          <p class="milestone-body">On July 13, 2024 Zené proposed to Noah with a beautifully crafted crossword puzzle. It was so well done in fact, that Noah didn't realize he was being proposed to.</p>
+        </div>
+        <img class="milestone-photo" src="images/our-story/IMG_7417.JPG" alt="Zené and Noah">
+      </div>
+
+      <div class="milestone-row">
+        <div class="milestone">
+          <p class="milestone-year">2026</p>
+          <h2 class="milestone-title">Getting Married</h2>
+          <p class="milestone-body">And now here we are — surrounded by the people we love most, ready to begin the next chapter together. We're so glad you're part of it.</p>
+        </div>
+        <img class="milestone-photo" src="images/carousel/Zene-Noah-Engagement-5900.jpg" alt="Zené and Noah">
       </div>
 
     </div>
