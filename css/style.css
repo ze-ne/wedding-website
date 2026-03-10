@@ -96,6 +96,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border: none;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
@@ -239,30 +240,39 @@ img { max-width: 100%; display: block; }
 .hero-text {
   text-align: center;
   padding: 3rem 1.5rem 4rem;
+  margin-top: -8.5rem;
+  position: relative;
 }
 
 .hero-wisteria {
-  margin-bottom: 1.5rem;
+  margin: 0;
+}
+
+.wisteria-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .hero-text h1 {
   font-size: clamp(2.5rem, 8vw, 5rem);
   letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-date {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-green);
   margin-bottom: 1rem;
 }
 
-.hero-welcome {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  color: var(--color-text-mid);
-  margin-bottom: 2rem;
-  font-style: italic;
+.hero-countdown {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin-bottom: 4rem;
 }
