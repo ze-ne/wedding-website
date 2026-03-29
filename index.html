@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div id="page-loader"><span class="loader-logo">Z &amp; N</span></div>
   <nav class="site-nav">
     <span class="nav-logo">Z &amp; N</span>
     <ul class="nav-links">
@@ -27,10 +28,10 @@
   <section class="carousel" aria-label="Wedding photo carousel">
     <div class="carousel-track" id="carouselTrack">
       <img src="images/carousel/Zene-Noah-Engagement-5545.jpg" alt="Zené and Noah">
-      <img src="images/carousel/Zene-Noah-Engagement-5900.jpg" alt="Zené and Noah">
-      <img src="images/carousel/Zene-Noah-Engagement-5665.jpg" alt="Zené and Noah">
-      <img src="images/carousel/Zene-Noah-Engagement-5872.jpg" alt="Zené and Noah">
-      <img src="images/carousel/Zene-Noah-Engagement-5780.jpg" alt="Zené and Noah">
+      <img src="images/carousel/Zene-Noah-Engagement-5900.jpg" alt="Zené and Noah" loading="lazy">
+      <img src="images/carousel/Zene-Noah-Engagement-5665.jpg" alt="Zené and Noah" loading="lazy">
+      <img src="images/carousel/Zene-Noah-Engagement-5872.jpg" alt="Zené and Noah" loading="lazy">
+      <img src="images/carousel/Zene-Noah-Engagement-5780.jpg" alt="Zené and Noah" loading="lazy">
     </div>
     <button class="carousel-btn carousel-btn--prev" id="prevBtn" aria-label="Previous photo">&#8249;</button>
     <button class="carousel-btn carousel-btn--next" id="nextBtn" aria-label="Next photo">&#8250;</button>
@@ -58,7 +59,7 @@
     var countdownDate = new Date("August 1, 2026 23:30:00").getTime();
     var x = setInterval(function() {
       var now = new Date().getTime();
-      var distance = Math.max(0, countdownDate - now); 
+      var distance = Math.max(0, countdownDate - now);
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -67,5 +68,6 @@
     }, 1000);
   </script>
   <script src="js/nav.js"></script>
+  <script src="js/loader.js"></script>
 </body>
 </html>

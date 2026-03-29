@@ -31,6 +31,7 @@ permalink: /rsvp/
   </style>
 </head>
 <body class="inner-page">
+  <div id="page-loader"><span class="loader-logo">Z &amp; N</span></div>
   <nav class="site-nav">
     <span class="nav-logo">Z &amp; N</span>
     <ul class="nav-links">
@@ -57,14 +58,22 @@ permalink: /rsvp/
       </p>
 
       <div class="rsvp-frame-wrapper">
+        <div id="rsvp-placeholder">Loading</div>
         <iframe
+          id="rsvp-iframe"
           src="https://deformity.ai/d/PdbRh0UYEVyY"
           title="RSVP Form"
-          style="background-color: var(--color-bg)"
           frameborder="0"
           marginheight="0"
-          marginwidth="0"></iframe>
+          marginwidth="0"
+          style="display:none; width:100%; min-height:300px; border:none;"></iframe>
       </div>
+      <script>
+        document.getElementById('rsvp-iframe').addEventListener('load', function () {
+          document.getElementById('rsvp-placeholder').style.display = 'none';
+          this.style.display = 'block';
+        });
+      </script>
     </div>
   </main>
 
@@ -72,5 +81,6 @@ permalink: /rsvp/
     <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
   </footer>
   <script src="../js/nav.js"></script>
+  <script src="../js/loader.js"></script>
 </body>
 </html>
