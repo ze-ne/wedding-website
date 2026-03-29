@@ -20,6 +20,38 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* --- FLORAL SIDE BORDERS (inner pages) --- */
+body.inner-page {
+  position: relative;
+}
+
+body.inner-page::before,
+body.inner-page::after {
+  content: '';
+  position: absolute;
+  top: 5rem;
+  bottom: 5.25rem;
+  width: 200px;
+  background-size: 200px auto;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.inner-page::before {
+  left: 0;
+  background-image: url('../images/floral-left-border.png');
+  background-position: top center;
+}
+
+body.inner-page::after {
+  right: 0;
+  background-image: url('../images/floral-right-border.png');
+  background-position: top 438px center;
+}
+
+body.inner-page.left-only::after { display: none; }
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
