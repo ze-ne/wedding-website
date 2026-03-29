@@ -27,10 +27,25 @@
     }
 
     .milestone-row {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 3rem;
+    }
+
+    /* Dot on the center line */
+    .milestone-row::after {
+      content: '';
+      position: absolute;
+      top: 1.75rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      background: var(--color-rose);
+      border-radius: 50%;
+      z-index: 1;
     }
 
     .milestone {
@@ -51,30 +66,13 @@
       display: block;
     }
 
-    /* Dot on the center line */
-    .milestone::after {
-      content: '';
-      position: absolute;
-      top: 1.75rem;
-      width: 10px;
-      height: 10px;
-      background: var(--color-rose);
-      border-radius: 50%;
-    }
-
     /* Odd rows: text left, photo right */
     .milestone-row:nth-child(odd) .milestone { order: 1; }
     .milestone-row:nth-child(odd) .milestone-photo { order: 2; }
-    .milestone-row:nth-child(odd) .milestone::after {
-      right: calc(-13.64% - 5px);
-    }
 
     /* Even rows: photo left, text right */
     .milestone-row:nth-child(even) .milestone { order: 2; }
     .milestone-row:nth-child(even) .milestone-photo { order: 1; }
-    .milestone-row:nth-child(even) .milestone::after {
-      left: calc(-13.64% - 5px);
-    }
 
     .milestone-year {
       font-family: var(--font-sans);
@@ -112,7 +110,7 @@
         order: unset !important;
       }
 
-      .milestone::after { display: none; }
+      .milestone-row::after { display: none; }
     }
   </style>
 </head>
