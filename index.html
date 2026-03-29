@@ -19,7 +19,9 @@
       <li><a href="our-story.html">Our Story</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-overlay"></div>
   <main>
   <!-- CAROUSEL -->
   <section class="carousel" aria-label="Wedding photo carousel">
@@ -64,5 +66,6 @@
       document.getElementById("wedding-countdown").innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
     }, 1000);
   </script>
+  <script src="js/nav.js"></script>
 </body>
 </html>
