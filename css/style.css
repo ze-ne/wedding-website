@@ -186,6 +186,14 @@ img { max-width: 100%; display: block; }
   .nav-links a { font-size: 0.75rem; }
 }
 
+/* --- MOBILE --- */
+@media (max-width: 640px) {
+  body.inner-page::before,
+  body.inner-page::after {
+    display: none;
+  }
+}
+
 /* --- CAROUSEL --- */
 .carousel {
   position: relative;

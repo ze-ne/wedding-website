@@ -34,7 +34,7 @@
   }
 
   function slideWidth() {
-    return carousel.offsetWidth / 3;
+    return window.innerWidth <= 640 ? carousel.offsetWidth : carousel.offsetWidth / 3;
   }
 
   function applyWidths() {
