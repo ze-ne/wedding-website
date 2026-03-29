@@ -23,16 +23,6 @@
       white-space: nowrap;
     }
     .timeline-event { font-size: 0.95rem; }
-    .detail-badge {
-      display: inline-block;
-      background: var(--color-gold);
-      color: var(--color-text);
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      margin-top: 0.5rem;
-    }
     .map-wrapper {
       margin: 2rem 0;
       border: 1px solid var(--color-gold);
@@ -49,9 +39,12 @@
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
-    .card-heading {
-      font-size: 1.5rem;
-      margin-bottom: 0.25rem;
+    .event-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.4rem;
     }
   </style>
 </head>
@@ -71,18 +64,22 @@
 
   <main>
     <div class="page-header">
-      <h1>Wedding Details</h1>
+      <h1>The Weekend</h1>
     </div>
 
     <div class="container">
 
-      <div class="card">
-        <h2 class="card-heading">Wisteria Hall</h2>
-        <p style="color:var(--color-muted); margin-bottom:0.75rem;">2300 Arboretum Dr E, Seattle, WA 98112</p>
-        <span class="detail-badge">Cocktail Attire</span>
-      </div>
+      <p class="event-label">Welcome Dinner &middot; July 31, 2026</p>
+      <h2 class="section-heading">Stoup Brewing</h2>
+      <p style="color:var(--color-muted); margin-bottom:0.25rem;">Capitol Hill, Seattle</p>
+      <p style="color:var(--color-muted); margin-bottom:2rem;">5:30 – 7:30 PM</p>
 
       <div class="divider">&#10022; &#10022; &#10022;</div>
+
+      <p class="event-label">Wedding Day &middot; August 1, 2026</p>
+      <h2 class="section-heading">Wisteria Hall</h2>
+      <p style="color:var(--color-muted); margin-bottom:0.25rem;">2300 Arboretum Dr E, Seattle, WA 98112</p>
+      <p style="color:var(--color-muted); margin-bottom:1.5rem;">Cocktail attire</p>
 
       <h2 class="section-heading">Schedule</h2>
       <ul class="timeline">
@@ -106,7 +103,6 @@
 
       <div class="divider">&#10022; &#10022; &#10022;</div>
 
-      <h2 class="section-heading">Venue</h2>
       <div class="map-wrapper">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2688.0!2d-122.2947!3d47.6408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2300+Arboretum+Dr+E%2C+Seattle%2C+WA+98112!5e0!3m2!1sen!2sus!4v1"
