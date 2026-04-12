@@ -30,4 +30,9 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();
   });
+
+  // Close menu when navigating back via swipe (bfcache restore)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) closeMenu();
+  });
 })();
