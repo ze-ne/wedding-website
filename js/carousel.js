@@ -176,4 +176,34 @@
 
   if (prevBtn) prevBtn.addEventListener('click', goLeft);
   if (nextBtn) nextBtn.addEventListener('click', goRight);
+
+  // Touch / swipe support (iOS + Android)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  carousel.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwiping = false;
+  }, { passive: true });
+
+  carousel.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    // Only hijack scroll if movement is more horizontal than vertical
+    if (Math.abs(dx) > Math.abs(dy)) {
+      isSwiping = true;
+      e.preventDefault(); // prevent page scroll while swiping the carousel
+    }
+  }, { passive: false });
+
+  carousel.addEventListener('touchend', e => {
+    if (!isSwiping) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const threshold = 50; // px
+    if (dx < -threshold) goRight();
+    else if (dx > threshold) goLeft();
+    isSwiping = false;
+  }, { passive: true });
 })();
