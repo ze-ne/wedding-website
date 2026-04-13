@@ -253,10 +253,7 @@ img { max-width: 100%; display: block; }
     font-size: 0.9rem;
     letter-spacing: 0.08em;
   }
-}
 
-/* --- MOBILE --- */
-@media (max-width: 640px) {
   body.inner-page::before,
   body.inner-page::after {
     display: none;

@@ -191,7 +191,6 @@
   carousel.addEventListener('touchmove', e => {
     const dx = e.touches[0].clientX - touchStartX;
     const dy = e.touches[0].clientY - touchStartY;
-    // Only hijack scroll if movement is more horizontal than vertical
     if (Math.abs(dx) > Math.abs(dy)) {
       isSwiping = true;
       e.preventDefault(); // prevent page scroll while swiping the carousel

@@ -65,6 +65,7 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       document.getElementById("wedding-countdown").innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
+      if (distance === 0) clearInterval(x);
     }, 1000);
   </script>
   <script src="js/nav.js"></script>

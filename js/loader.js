@@ -6,7 +6,10 @@
   var startTime = Date.now();
   var MIN_MS = 500;
 
+  var hidden = false;
   function doHide() {
+    if (hidden) return;
+    hidden = true;
     loader.classList.add('fade-out');
     loader.addEventListener('transitionend', function () {
       loader.style.display = 'none';
