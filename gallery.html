@@ -1,0 +1,160 @@
+---
+permalink: /gallery/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery — Zené &amp; Noah</title>
+  <link rel="icon" href="../images/rings.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .gallery-section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 1200px; /* per-section estimate set inline below */
+      margin-bottom: 2rem;
+    }
+    .gallery-heading {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .gallery-item {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--color-gold);
+      background: var(--color-carousel-bg);
+    }
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); opacity: 0.92; }
+
+    /* --- LIGHTBOX (enhanced by js/gallery.js) --- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(20, 20, 20, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.is-open { display: flex; }
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 82vh;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+    .lightbox-header {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+      color: var(--color-white);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .lightbox-title { font-weight: 500; }
+    .lightbox-counter { opacity: 0.7; }
+    .lightbox-counter::before { content: "· "; }
+    .lightbox-close {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      transform: none;
+      font-size: 2rem;
+      z-index: 2;
+    }
+    .lightbox-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+    .lightbox-btn--prev { left: 1rem; }
+    .lightbox-btn--next { right: 1rem; }
+    body.lightbox-open { overflow: hidden; }
+
+    @media (max-width: 640px) {
+      .lightbox-img { max-width: 96vw; max-height: 74vh; }
+    }
+  </style>
+</head>
+<body class="inner-page">
+  <div id="page-loader"><span class="loader-logo">Z &amp; N</span></div>
+  <nav class="site-nav">
+    <a href="../" class="nav-logo">Z &amp; N</a>
+    <ul class="nav-links">
+      <li><a href="../">Home</a></li>
+      <li><a href="../details/">Details</a></li>
+      <li><a href="../rsvp/">RSVP</a></li>
+      <li><a href="../travel/">Travel</a></li>
+      <li><a href="../registry/">Registry</a></li>
+      <li><a href="../our-story/">Our Story</a></li>
+      <li><a href="../gallery/" class="active">Gallery</a></li>
+      <li><a href="../faq/">FAQ</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-overlay"></div>
+
+  <main>
+    <div class="page-header">
+      <h1>Photo Gallery</h1>
+    </div>
+
+    {% assign global_index = 0 %}
+    {% for cat in site.data.gallery %}
+      {% assign thumb_prefix = "/images/wedding-gallery/thumbs/" | append: cat.folder | append: "/" %}
+      {% assign thumbs = site.static_files | where_exp: "f", "f.path contains thumb_prefix" | sort: "name" %}
+      {% if thumbs.size > 0 %}
+      {% comment %} Estimated rendered height so content-visibility:auto doesn't jump the scrollbar: ceil(n/4) rows * ~210px + ~180px for heading/divider {% endcomment %}
+      {% assign est_rows = thumbs.size | plus: 3 | divided_by: 4 %}
+      {% assign est_height = est_rows | times: 210 | plus: 180 %}
+      <section class="gallery-section" style="contain-intrinsic-size: auto {{ est_height }}px">
+        <div class="container">
+          <h2 class="gallery-heading">{{ cat.name }}</h2>
+          <div class="divider">&#10048; &#10048; &#10048;</div>
+          <div class="gallery-grid">
+            {% for thumb in thumbs %}
+              {% assign full = thumb.path | replace: "/thumbs/", "/" %}
+              <a class="gallery-item" href="{{ full | uri_escape | relative_url }}" data-index="{{ global_index }}" data-section="{{ cat.name }}">
+                <img src="{{ thumb.path | uri_escape | relative_url }}" loading="lazy" decoding="async" alt="Zené &amp; Noah wedding — {{ cat.name }}">
+              </a>
+              {% assign global_index = global_index | plus: 1 %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endif %}
+    {% endfor %}
+  </main>
+
+  <footer class="site-footer">
+    <p>Zené &amp; Noah &middot; August 1, 2026 &middot; Seattle, WA</p>
+  </footer>
+  <script src="../js/nav.js"></script>
+  <script src="../js/loader.js"></script>
+  <script src="../js/gallery.js"></script>
+</body>
+</html>

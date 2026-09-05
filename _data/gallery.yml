@@ -1,0 +1,14 @@
+# Gallery categories, in display order. `folder` must match the directory name
+# under images/wedding-gallery/ (and its thumbs/ mirror) exactly.
+- name: Getting Ready
+  folder: Getting Ready
+- name: Ceremony
+  folder: Ceremony
+- name: Cocktail Hour
+  folder: Cocktail Hour
+- name: Reception
+  folder: Reception
+- name: Noah + Zene
+  folder: Noah + Zene
+- name: Family + Friends
+  folder: Family + Friends

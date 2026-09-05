@@ -1,3 +1,4 @@
 docs/*
 *.DS_STORE*
 _site/
+.DS_Store
