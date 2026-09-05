@@ -133,13 +133,13 @@ permalink: /gallery/
       {% assign est_height = est_rows | times: 210 | plus: 180 %}
       <section class="gallery-section" style="contain-intrinsic-size: auto {{ est_height }}px">
         <div class="container">
-          <h2 class="gallery-heading">{{ cat.name }}</h2>
+          <h2 class="gallery-heading">{{ cat.name | escape }}</h2>
           <div class="divider">&#10048; &#10048; &#10048;</div>
           <div class="gallery-grid">
             {% for thumb in thumbs %}
               {% assign full = thumb.path | replace: "/thumbs/", "/" %}
-              <a class="gallery-item" href="{{ full | uri_escape | relative_url }}" data-index="{{ global_index }}" data-section="{{ cat.name }}">
-                <img src="{{ thumb.path | uri_escape | relative_url }}" loading="lazy" decoding="async" alt="Zené &amp; Noah wedding — {{ cat.name }}">
+              <a class="gallery-item" href="{{ full | uri_escape | relative_url }}" data-index="{{ global_index }}" data-section="{{ cat.name | escape }}">
+                <img src="{{ thumb.path | uri_escape | relative_url }}" loading="lazy" decoding="async" alt="Zené &amp; Noah wedding — {{ cat.name | escape }}">
               </a>
               {% assign global_index = global_index | plus: 1 %}
             {% endfor %}
